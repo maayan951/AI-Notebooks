@@ -173,29 +173,29 @@ class AgentAgency:
 ####################    Testing the Agents class    ####################
 
 
-# Creating agents with different strategies(those are loaded from the MongoDB)
-column_name = ['model', 'accuracy', 'f1score', 'mapk'] 
+# # Creating agents with different strategies(those are loaded from the MongoDB)
+# column_name = ['model','model_type', 'mapk', 'f1score', 'accuracy'] 
 
-SmithModel_data = [['SmithModel', 0.4, 0.9, 0.7]]
-SmithModel_df = pd.DataFrame(SmithModel_data, columns=column_name)
+# SmithModel_data = [['SmithModel', 'Smith', 0.7, 0.9, 0.4]]
+# SmithModel_df = pd.DataFrame(SmithModel_data, columns=column_name)
 
-DanModel_data = [['DanModel', 0.7, 0.9, 0.7]]
-DanModel_df = pd.DataFrame(DanModel_data, columns=column_name)
+# DanModel_data = [['DanModel', 'Dan', 0.7, 0.9, 0.7]]
+# DanModel_df = pd.DataFrame(DanModel_data, columns=column_name)
 
-JohnModel_data = [['JohnModel', 0.8, 0.9, 0.7]]
-JohnModel_df = pd.DataFrame(JohnModel_data, columns=column_name)
+# JohnModel_data = [['JohnModel', 'John', 0.7, 0.9, 0.8]]
+# JohnModel_df = pd.DataFrame(JohnModel_data, columns=column_name)
 
 
-# Adding all the agents to a list and creating an Agents object
-agentsList = []
-agentsList.append(Agent("Smith", SmithModel_df, AgentStrategy(0.3, 0.5, 0.5), AgentStrategy(0.3, 0.5, 0.5)))
-agentsList.append(Agent("Dan", DanModel_df, AgentStrategy(0.8, 0.5, 0.8), AgentStrategy(0.3, 0.5, 0.7)))
+# # Adding all the agents to a list and creating an Agents object
+# agentsList = []
+# agentsList.append(Agent(SmithModel_df, AgentStrategy(0.3, 0.5, 0.5), AgentStrategy(0.3, 0.5, 0.5)))
+# agentsList.append(Agent(DanModel_df, AgentStrategy(0.8, 0.5, 0.8), AgentStrategy(0.3, 0.5, 0.7)))
 
-cia = AgentAgency(agentsList, 0.7)
-cia.addAgent(Agent("John", JohnModel_df, AgentStrategy(0.3, 0.5, 0.5), AgentStrategy(0.3, 0.5, 0.5)))
+# cia = AgentAgency(agentsList, 0.7)
+# cia.addAgent(Agent(JohnModel_df, AgentStrategy(0.3, 0.5, 0.5), AgentStrategy(0.3, 0.5, 0.5)))
 
-# Printing the agents
+# # Printing the agents
 # print(cia)
 
-# Calling the CheckDeal method
-print(cia.CheckDeal())
+# # Calling the CheckDeal method
+# print(cia.CheckDeal())

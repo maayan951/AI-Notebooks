@@ -3,8 +3,8 @@ from agentStrategy import AgentStrategy
 import pandas as pd
 
 class Agent:
-    def __init__(self, name: str, model_df, initial_strategy: AgentStrategy, concession_strategy: AgentStrategy):
-        self.name = name
+    def __init__(self, model_df, initial_strategy: AgentStrategy, concession_strategy: AgentStrategy):
+        self.__setName(model_df.model_type[0])
         self.__setModel(model_df.model[0])
         self.__setModelStrategy(AgentStrategy(model_df.accuracy[0], model_df.f1score[0], model_df.mapk[0]))
         self.initial_strategy = initial_strategy
@@ -67,7 +67,7 @@ class Agent:
             self.__flag_concession_strategy = False
 
 
-    name = property(__getName, __setName)
+    name = property(__getName)
     model = property(__getModel)
     model_strategy = property(__getModelStrategy)
     initial_strategy = property(__getInitialStrategy, __setInitialStrategy)
@@ -100,10 +100,10 @@ class Agent:
 ####################    Testing the Agent class    ####################
 
 
-# data = [['SmithModel', 0.4, 0.9, 0.7]]
-# column_name = ['model', 'accuracy', 'f1score', 'mapk'] 
+# data = [['SmithModel', 'Smith', 0.7, 0.9, 0.4]]
+# column_name = ['model','model_type', 'mapk', 'f1score', 'accuracy'] 
 # df = pd.DataFrame(data, columns=column_name)
 
-# agent = Agent("Smith", df, AgentStrategy(0.3, 0.5, 0.5), AgentStrategy(0.3, 0.5, 0.5))
+# agent = Agent(df, AgentStrategy(0.3, 0.5, 0.5), AgentStrategy(0.3, 0.5, 0.5))
 
 # print(agent)
