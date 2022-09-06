@@ -1,6 +1,7 @@
 
 
 from agent import Agent, AgentStrategy, pd
+from print_font import printFont
 
 class AgentAgency:
     def __init__(self, agents: list[Agent], majority_needed: float|int):
@@ -131,15 +132,26 @@ class AgentAgency:
         total_voted_approved = self.initial_dealCount + self.concession_dealCount
         
         if total_voted_approved >= self.majority_needed * len(self.agents):
-            print(f"\nAgents accepted initial strategy: {initial_strategy_list}")
-            print(f"Agents accepted concession strategy: {concession_strategy_list}")
-            print(f"Agents declined both strategies: {declined_strategy_list}")
-            print(f"Total accepted agents: {total_voted_approved}")
+            
+            st = '\n' + printFont.GREEN + printFont.BOLD + "Agents accepted initial strategy:" + printFont.END + '\n'
+            for i,agent in enumerate(initial_strategy_list, 1):
+                st +=  f"\t{i}. {agent.name}\n"
+                
+            st += printFont.YELLOW + printFont.BOLD + "Agents accepted concession strategy:" + printFont.END + '\n'
+            for i,agent in enumerate(concession_strategy_list, 1):
+                st +=  f"\t{i}. {agent.name}\n"
+                
+            st += printFont.RED + printFont.BOLD + "Agents declined:" + printFont.END + '\n'
+            for i,agent in enumerate(declined_strategy_list, 1):
+                st +=  f"\t{i}. {agent.name}\n"
+                
+            print(st, end="")
+            print(f"\nTotal accepted agents: {total_voted_approved}")
             print(f"Majority needed: {self.majority_needed * len(self.agents) :.2f}")
-            print(f"Deal approved!\n")
+            print(printFont.BOLD + printFont.GREEN + "Deal approved!" + printFont.END + '\n')
             return initial_strategy_list + concession_strategy_list
             
-        print("Deal declined! \nThere is a conflict between the agents, please resolve it manually")
+        print(printFont.BOLD + printFont.RED + "Deal declined!" + printFont.END + "\nThere is a conflict between the agents, please resolve it manually")
         return False
 
 ########################################################################################################################
@@ -183,7 +195,7 @@ cia = AgentAgency(agentsList, 0.7)
 cia.addAgent(Agent("John", JohnModel_df, AgentStrategy(0.3, 0.5, 0.5), AgentStrategy(0.3, 0.5, 0.5)))
 
 # Printing the agents
-print(cia)
+# print(cia)
 
 # Calling the CheckDeal method
 print(cia.CheckDeal())
